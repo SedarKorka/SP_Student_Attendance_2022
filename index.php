@@ -21,7 +21,7 @@ Autoloader::register();
 if (isset($_GET['page']) AND ! empty($_GET['page'])):
     $page = strtolower(trim($_GET['page']));
 else:
-    $page = 'addemail';
+    $page = 'login';
 endif;
 
 $allPagesControllers = scandir('controllers/', SCANDIR_SORT_NONE);

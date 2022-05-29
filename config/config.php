@@ -28,11 +28,11 @@ ini_set('implicit_flush', 1);
 // Configuration de l'accès à la base de données
 define('TYPE', 'mysql');
 define('HOST', 'localhost');
-define('DBNAME', 'testmagibte');
+define('DBNAME', 'FINAL_PROJECT');
 define('PORT', 3306);
 define('CHARSET', 'utf8');
 define('USER', 'root');
-define('PASSWD', '');
+define('PASSWD', '2021');
 
 //Paths
 define('LOCALHOST', $_SERVER['SERVER_NAME']);
@@ -41,7 +41,7 @@ define('PATH_REQUIRED', substr($_SERVER['SCRIPT_FILENAME'], 0, -9));
 
 define('PATH', substr($_SERVER['PHP_SELF'], 0, -9));
 
-define('LINK', 'http://' . LOCALHOST . PATH);
+define('LINK', 'https://' . LOCALHOST .':8080'. PATH);
 define('LINKNOS', 'http://' . LOCALHOST . PATH);
 
 //define('LINK', 'https://' . LOCALHOST . PATH);
