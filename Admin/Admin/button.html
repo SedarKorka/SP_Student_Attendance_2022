@@ -1,0 +1,29 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<title>Buttons</title>
+</head>
+
+<body class="buttonBackground">
+	<ul id="menuslide">
+		<br>
+		<li><b><a href="AddnewStudents.html" target="info">Add New Students</b></li>
+		<br>
+		<li><b><a href="RemoveStudents.html" target="info">Remove Students</a></b></li>
+		<br>
+		<li><b><a href="AddClass.html" target="info">Add Class Shedules</a></b></li>
+		<br>
+		<li><b><a href="RemoveClass.html" target="info">Remove Class Shedules</a></b></li>
+		<br>
+		<li><b><a href="">Sign Out</a></b></li>
+		<br>
+	</ul>
+	<script type="text/javascript">
+		$('#menuslide li').click(function () {
+			$('ul', this).slideToggle(100);
+		});
+	</script>
+</body>
+
+</html>
