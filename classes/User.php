@@ -40,6 +40,20 @@
             }
             return $resultat;
         }
+
+        public static function selectAllUser(){
+            global $con;
+            $re = $con->prepare("SELECT * FROM  user");
+       
+            $re->execute();
+
+            $resultat = [];
+            while ($row = $re->fetchObject()) {
+                array_push($resultat,$row);
+            }
+            return $resultat;
+        }
+
         
 
 

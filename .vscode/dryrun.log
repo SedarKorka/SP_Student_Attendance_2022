@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/diallo/Documents/phpMyAdmin-5.1.1-all-languages/SP_Student_Attendance_2022'
+make: Leaving directory '/home/diallo/Documents/phpMyAdmin-5.1.1-all-languages/SP_Student_Attendance_2022'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
