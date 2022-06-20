@@ -1,3 +1,20 @@
+
+<?php
+
+include_once("../Backend/AddClass.php");
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/Student.php");
+
+ 
+
+   
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,22 +37,59 @@
     <script src="Myscript.js"></script>
     <title>Attendances</title>
 </head>
+<style>
+    .message{
+  background: #008000;
+  color:#FFF;
+  padding: 1em .5em;
+  margin: 1em 0;
+}
+</style>
 
 <body>
     <div class="title">
-        <h2>Remove Class Shedules</h2>
+        <h2>Add Class Shedules</h2>
     </div>
     <br>
-    <form>
+    <form method="POST" action="#">
+    <?php if(count($errors) > 0): ?>
+        <div class="message" align="center">
+            <?php
+            foreach ($errors as $err) { ?>
+                *<?= $err ?><br/>
+            <?php }
+
+
+            ?>
+            </div>
+        <?php endif; ?>
         <div class="Date">
         <label for ="date">Date:</label>
-        <input type="date" id="date" >
+        <input type="date" id="date" name="date">
         </div>
+
+         
+
         <div class="time">
             <label for ="time">Time:</label>
-            <input type="time" id="time" >
+            <input type="time" id="time" name="time">
         </div>
-        <div class="levels">
+
+        <div class="levels1">
+        <label for="day">Studie Level: </label>
+        <select name="day" id="day">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+    </div>
+
+
+    <div class="levels">
         <label for="levels">Studie Level: </label>
         <select name="levels" id="levels">
             <option value="Bachelor">Bachelor</option>
@@ -43,22 +97,25 @@
             <option value="PHD">PHD</option>
         </select>
     </div>
+    
     <div class="Studies">
         <label for="Studies">Studies Programme: </label>
         <select name="studies" id="studies">
-            <option value="CS">Computer Science</option>
-            <option value="IT">Information Technology</option>
-            <option value="ET">Eco Technology</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Eco Technology">Eco Technology</option>
         </select>
     </div>
     <div class="sub">
         <label for="sub">Subject: </label>
         <select name="sub" id="sub">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+            <option value="artificial intelligence">artificial intelligence</option>
+            <option value="computer systems and networks">computer systems and networks</option>
+            <option value="security">security</option>
         </select>
     </div>
     <br>
-    <button type="button" class="btn btn-outline-primary" id="tablebtn">Remove</button>
+     
+            <input type="submit" class="btn btn-outline-primary btn-lg" id="tablebtn" value="Add" name="addBtn">
+      
     </form>

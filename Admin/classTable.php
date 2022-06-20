@@ -1,3 +1,20 @@
+
+<?php
+
+include_once("../Backend/SelectSchedules.php");
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/Classes.php");
+
+ 
+
+   
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,39 +47,26 @@
         <thead>
             <tr>
                 <th scope="col">Time</th>
-                <th scope="col">Sunday </th>
+                
                 <th scope="col">Monday </th>
                 <th scope="col">Tuesday</th>
                 <th scope="col">Wednesday</th>
                 <th scope="col">Thursday</th>
                 <th scope="col">Friday</th>
                 <th scope="col">Saturday</th>
+                <th scope="col">Sunday </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
+
+        <?php 
+          if (count($Shedules) > 0) {
+             
+            foreach ($Shedules as $Shedule) {?>
+            <?php if($Shedule->day == "Monday"):  ?>
+                <tr>
+                <th scope="row"><?= $Shedule->date ?></th>
+                <td><?= $Shedule->studies ?></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -70,26 +74,84 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
-                <th scope="row"></th>
+            <?php elseif($Shedule->day == "Tuesday"): ?>
+                <tr>
+                <th scope="row"><?= $Shedule->date ?></th>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
+                <td><?= $Shedule->studies ?></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
+
+            <?php elseif($Shedule->day == "Wednesday"): ?>
+
+                <tr>
+                <th scope="row"><?= $Shedule->date ?></th>
+                <td></td>
+                <td></td>
+                <td><?= $Shedule->studies ?></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <?php elseif($Shedule->day == "Thursday"): ?>
+                <tr>
+                <th scope="row"><?= $Shedule->date ?></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><?= $Shedule->studies ?></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <?php elseif($Shedule->day == "Friday"): ?>
+                <tr>
+                <th scope="row"><?= $Shedule->date ?></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><?= $Shedule->studies ?></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <?php elseif($Shedule->day == "Satursday"): ?>
+                <tr>
+                <th scope="row"><?= $Shedule->date ?></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><?= $Shedule->studies ?></td>
+                <td></td>
+            </tr>
+
+            <?php elseif($Shedule->day == "Sunday"): ?>
+                <tr>
+                <th scope="row"><?= $Shedule->date ?></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><?= $Shedule->studies ?></td>
+            </tr>
+            <?php endif; ?>
+        <?php
+                
+            } 
+        }
+
+
+        ?>
         </tbody>
     </table>
 </body>

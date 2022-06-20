@@ -41,6 +41,20 @@
             return $resultat;
         }
 
+        public static function selectUserById($id){
+            global $con;
+            $re = $con->prepare("SELECT * FROM  user WHERE id=:id");
+            $re->bindParam(":id",$id);
+            $re->execute();
+
+            $resultat = [];
+            while ($row = $re->fetchObject()) {
+                array_push($resultat,$row);
+            }
+            return $resultat;
+        }
+
+
         public static function selectAllUser(){
             global $con;
             $re = $con->prepare("SELECT * FROM  user");

@@ -1,3 +1,20 @@
+
+<?php
+
+include_once("../Backend/MissedClasses.php");
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/MissingClass.php");
+
+ 
+
+   
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,20 +37,47 @@
     <script src="Myscript.js"></script>
     <title>MissedClasses</title>
 </head>
-
+<style>
+    .message{
+  background: #008000;
+  color:#FFF;
+  padding: 1em .5em;
+  margin: 1em 0;
+}
+</style>
 <body>
     <div class="title">
         <h2>Class Missed Students</h2>
     </div>
     <br>
-    <form>
+    <form method="POST" action="#">
+    <?php if(count($errors) > 0): ?>
+    <div class="message" align="center">
+        <?php
+          foreach ($errors as $err) { ?>
+              *<?= $err ?><br/>
+         <?php }
+
+
+        ?>
+        </div>
+        <?php endif; ?>
         <div class="Date">
             <label for="date">Date:</label>
             <input type="date" id="date" name="date">
         </div>
+        <div class="levels1">
+        <label for="levels">Student: </label>
+        <select name="idStudent" id="levels">
+            <?php foreach ($students as $std) { ?>
+                <option value="<?= $std->id ?>"><?= $std->firstname.' '.$std->lastname ?></option>
+           <?php }?>
+            
+        </select>
+    </div>
     <div class="levels">
         <label for="levels">Studie Level: </label>
-        <select name="levels" id="levels">
+        <select name="level" id="levels">
             <option value="Bachelor">Bachelor</option>
             <option value="Master">Master</option>
             <option value="PHD">PHD</option>
@@ -41,7 +85,7 @@
     </div>
     <div class="Studies">
         <label for="Studies">Studies Programme: </label>
-        <select name="studies" id="studeies">
+        <select name="programme" id="studeies">
             <option value="CS">Computer Science</option>
             <option value="IT">Information Technology</option>
             <option value="ET">Eco Technology</option>
@@ -49,51 +93,73 @@
     </div>
     <div class="sub">
         <label for="sub">Subject: </label>
-        <select name="sub" id="sub">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+        <select name="subject" id="sub">
+            <option value="Mathematic">Mathematic</option>
+            <option value="Physic">Physic</option>
+            <option value="English"></option>
         </select>
     </div>
-    <br>
-    <button type="button" class="btn btn-outline-primary" onClick="toggleTable()" id="tablebtn">Enter</button>
+    <br> 
+    <input type="submit" class="btn btn-outline-primary btn-lg" id="tablebtn" value="Add" name="addBtn">
     </form>
-    <div class="hidden" id="myTable">
+    <div class="hidden1" id="myTable">
     <table class="table" id="commonTable">
         <thead>
           <tr>
             <th scope="col">Student Id</th>
             <th scope="col">Full Name</th>
             <th scope="col">Semester</th>
-            <th scope="col">Total Classes</th>
+            
             <th scope="col">Absent Classes</th>
             <th scope="col">Participate persentage</th>
-            <th scope="col">Eligable/Not Eligable</th>
-            <th scope="col">Email</th>
+            <th scope="col">Message</th>
+            <th scope="col">Repport</th>
           </tr>
-          <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <?php foreach ($selectAllmissing as $m) {
+              
+              $users = MissingClass::selectUserByEId($m->idStudent);
+              ?>
+
+
+            <tr>
+            <th scope="row"> 
+                <?= $m->idStudent ?></th>
+            <td><?php
+            foreach ($users as $full) {
+               echo $full->firstname." ".$full->lasstname;
+            }
+
+               
+            
+             ?></td>
             <td>
-                <a href="" target="_blank" class="btn btn-primary">Click</a>
+            <?php
+            foreach ($users as $full) {
+               echo $full->semester;
+            }
+
+               
+            
+             ?>
+            </td>
+            <td><?= $m->subject ?></td>
+            <td><?= $m->programme ?></td>
+            <td>
+            <div class="form-group">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="30"></textarea>
+                </div>
+            </td>
+            <td>
+                <a href="" target="_blank" class="btn btn-primary">Send Repport</a>
             </td>
           </tr>
-          <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <a href="" target="_blank" class="btn btn-primary">Click</a>
-            </td>
+             
+
+
+            <?php
+          } ?>
+         
+         
           </tr>
         </tbody>
       </table>

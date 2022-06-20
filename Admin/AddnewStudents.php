@@ -1,3 +1,20 @@
+
+<?php
+
+include_once("../Backend/addNewStudent.php");
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/Student.php");
+
+ 
+
+   
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +37,31 @@
     <script src="Myscript.js"></script>
     <title>Profile</title>
 </head>
+<style>
+    .message{
+  background: #008000;
+  color:#FFF;
+  padding: 1em .5em;
+  margin: 1em 0;
+}
+</style>
 
 <body>
     <div class="title">
         <h2>Add New Students</h2>
     </div>
-    <form action="/action_page.php">
+    <form method="POST" enctype="multipart/form-data" action="#">
+<?php if(count($errors) > 0): ?>
+    <div class="message" align="center">
+        <?php
+          foreach ($errors as $err) { ?>
+              *<?= $err ?><br/>
+         <?php }
+
+
+        ?>
+        </div>
+        <?php endif; ?>
 
         <label for="img">
             <br>
@@ -33,36 +69,35 @@
                 <img src="profile.png" alt="Avatar" class="image" style="width:100%">
                 <div class="middle">
                     <div class="text">
-                        <input type="file" id="img" name="img">
+                        <input type="file" id="img" name="photo">
                     </div>
                 </div>
             </div>
         </label>
-        <br>
-    </form>
-    <form action="action.php">
+        <br> 
+    
         <div class="UserId">
             <label for="UserId">UserId:</label>
-            <input type="text" id="UserId" name="UserId">
+            <input type="text" id="UserId" name="userid" >
         </div>
         <br>
         <div class="fname">
             <label for="fName">First Name: </label>
-            <input type="text" name="fname" id="fName" value="">
+            <input type="text" name="firstname" id="fName" value="">
         </div>
         <div class="lname">
             <label for="lName">Last Name: </label>
-            <input type="text" name="lname" id="lName" value="">
+            <input type="text" name="lasstname" id="lName" value="">
         </div>
         <div class="pass">
             <label for="pass">Password: </label>
-            <input type="password" name="pass" id="pass" maxlength="22" size="22">
+            <input type="password" name="password" id="pass" maxlength="22" size="22">
             <input type="checkbox" onclick="passwordfunctionStudent()">Show Password
         </div>
         <br>
         <div class="gen">
             <label for="gen">Gender: </label>
-            <select name="gen" id="gen">
+            <select name="gender" id="gen">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
@@ -105,12 +140,12 @@
         <br>
         <div class="birth">
             <label for="birth"> Date Of Birth: </label>
-            <input type="date" name="birth" id="birth" >
+            <input type="date" name="date_of_birth" id="birth" >
         </div>
         <br>
         <div class="level">
             <label for="levels">Studie Area: </label>
-            <select name="levels" id="levels">
+            <select name="area" id="levels">
                 <option value="Bachelor">Bachelor</option>
                 <option value="Master">Master</option>
                 <option value="PHD">PHD</option>
@@ -133,7 +168,7 @@
         <br>
         <div class="sem">
             <label for="sem">Semester: </label>
-            <select name="sem" id="sem">
+            <select name="semester" id="sem">
                 <option value="1">1st Semester</option>
                 <option value="2">2nd Semester</option>
                 <option value="3">3rd Semester</option>
@@ -150,7 +185,7 @@
         </div>
         <br><br>
         <div class="button">
-            <button type="button" class="btn btn-outline-primary btn-lg" id="Addbtn">Add</button>
+            <input type="submit" class="btn btn-outline-primary btn-lg" id="Addbtn" value="Add" name="addBtn">
         </div>
     </form>
 

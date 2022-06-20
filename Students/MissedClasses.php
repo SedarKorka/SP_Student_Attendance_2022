@@ -1,3 +1,29 @@
+
+<?php 
+session_start();
+//die($_SESSION['id']);
+ 
+ 
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/MissingClass.php");
+
+$Shedules = MissingClass::selectAllmissingById($_SESSION['id']);
+
+$countMissing = MissingClass::selectAllmissingByIdOnline($_SESSION['id']);
+
+ 
+ 
+
+   
+ 
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,50 +57,52 @@
     <br>
     <table class="table table-striped">
         <thead>
-            <tr>
+           
+                <tr>
                 <th scope="col">Dates</th>
                 <th scope="col">Times</th>
                 <th scope="col">Classes</th>
                 <th scope="col">Missed Count</th>
                 <th scope="col">Missed Percentage</th>
             </tr>
+               
+            
         </thead>
         <tbody>
+        <?php foreach ($Shedules as $u) {
+            $time = new DateTime($u->date);
+            $date = $time->format('n.j.Y');
+            $time1 = $time->format('H:i');
+
+
+            
+            
+            
+            ?>
             <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th scope="row"><?= $date ?></th>
+                <td><?= $time1 ?></td>
+                <td><?= $u->subject ?></td>
+                <td>
+                    <?php
+
+                     foreach ($countMissing as $k) {
+
+                        if($u->subject == "	Mathematic"):
+                             echo $k->t[0];
+                        else:
+                            echo $k->t;
+                        endif;
+                     }
+                
+                
+                
+                    ?>
+                </td>
                 <td></td>
             </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <?php }  ?>
+           
         </tbody>
     </table>
 </body>

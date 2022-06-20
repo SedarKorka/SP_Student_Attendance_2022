@@ -36,3 +36,19 @@ function retypePassfunction() {
     x.type = "password";
   }
 }
+function passwordfunctionUser() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+function passwordfunctionStudent() {
+  var x = document.getElementById("pass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}

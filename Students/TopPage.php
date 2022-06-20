@@ -1,3 +1,9 @@
+
+<?php 
+session_start();
+//die($_SESSION['id']);
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -20,9 +26,9 @@
         </div>
         <div class="right">
             <div class="profile">
-                <div class="info">
-                    <span class="name">Student Name</span>
-                    <span class="id">Student ID</span>
+                <div class="info">  
+                    <span class="name"><?= $_SESSION['firstname'].' '.  $_SESSION['lassname']  ?></span>
+                    <span class="id">Student ID:<?= $_SESSION['id'] ?></span>
                 </div>
                 <img src="profile.png" alt="profile">
             </div>

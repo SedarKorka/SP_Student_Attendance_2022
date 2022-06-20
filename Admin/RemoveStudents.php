@@ -1,3 +1,20 @@
+
+<?php
+
+include_once("../Backend/removeStudent.php");
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/Student.php");
+
+ 
+
+   
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,22 +37,43 @@
     <script src="Myscript.js"></script>
     <title>Remove Graduate Students</title>
 </head>
+<style>
+    .message{
+  background: #008000;
+  color:#FFF;
+  padding: 1em .5em;
+  margin: 1em 0;
+}
+</style>
 
 <body onload="myFunction()">
     <div class="title">
         <h2>Remove Graduate Students</h2>
     </div>
     <br>
-    <form>
+    <?php if(count($errors) > 0): ?>
+    <div class="message" align="center">
+        <?php
+          foreach ($errors as $err) { ?>
+              *<?= $err ?><br/>
+         <?php }
+
+
+        ?>
+        </div>
+        <?php endif; ?>
+    <form method="POST" action="#">
+
+    
         <div class="studId">
             <label for="studId">Student ID</label>
-            <input type="text" id="studId" name="studId" placeholder="Enter Student ID" required>
+            <input type="text" id="studId" name="studentid" placeholder="Enter Student ID" required>
         </div>
     <br>
-    <button type="button" class="btn btn-outline-primary btn-lg" onClick="toggleTable()" id="remtblbtn">Enter</button>
+    <input type="submit" class="btn btn-outline-primary btn-lg" name="deleteStudentBtn" value="Enter" onClick="toggleTable()" id="remtblbtn">
     </form>
     <form>
-    <div class="hidden" id="myTable">
+    <div class="hidden1" id="myTable">
     <table class="table" id="removeTable">
         <thead>
           <tr>
@@ -45,15 +83,30 @@
             <th scope="col">FullTime/Erasmus Students</th>
             <th scope="col">Delete</th>
           </tr>
+          <?php 
+          if (count($students) > 0) {
+             
+          foreach ($students as $student) {?>
           <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th scope="row"><?= $student->id ?></th>
+            <td><?= $student->firstname ?></td>
+            <td><?= $student->lassname ?></td>
+            <td><?= $student->area ?></td>
             <td>
-                <button type="button" class="btn btn-outline-danger">Click</button>
+                <a href="../Backend/removeStudent.php?id=<?= $student->id ?>" class="btn btn-outline-danger">Click</a>
             </td>
           </tr>
+
+
+
+        <?php
+              
+          } 
+        }
+
+
+        ?>
+          
         </tbody>
       </table>
     </div>

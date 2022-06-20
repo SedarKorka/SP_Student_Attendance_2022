@@ -89,10 +89,10 @@ body{
         <form class="login-form" method="POST">
             <label>Role:</label> 
             <select name="role" id="role">
-                <option value="administrator">Administrator</option>
-                <option value="teacher">Teacher</option>
+                <option value="admin">Administrator</option>
+                <option value="Professor">Teacher</option>
                 <option value="faculty">Faculty</option>
-                <option value="student">Student</option>
+                <option value="Student">Student</option>
             </select>
 
 

@@ -1,30 +1,30 @@
 <html>
 
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-	<link rel="stylesheet" href="style.css">
-	<title>Buttons</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Buttons</title>
 </head>
 
 <body class="buttonBackground">
-	<ul id="menuslide">
-		<br>
-		<li><b><a href="Attendance.html" target="info">Attendances</a></b></li>
-		<br>
-		<li><b><a href="Profile.html" target="info">Profile</a></b></li>
-		<br>
-		<li><b><a href="classTable.html" target="info">Class Shedules</a></b></li>
-		<br>
-		<li><b><a href="MissedClasses.html" target="info">Missed Classes</a></b></li>
-		<br>
-		<li><b><a href="">Sign Out</a></b></li>
-		<br>
-	</ul>
-	<script type="text/javascript">
-		$('#menuslide li').click(function () {
-			$('ul', this).slideToggle(100);
-		});
-	</script>
+    <ul id="menuslide">
+        <br>
+        <li><b><a href="Attendance.php" target="info">Attendances</a></b></li>
+        <br>
+        <li><b><a href="Profile.php" target="info">Profile</a></b></li>
+        <br>
+        <li><b><a href="classTable.php" target="info">Class Shedules</a></b></li>
+        <br>
+        <li><b><a href="MissedClasses.php" target="info">Missed Classes</a></b></li>
+        <br>
+        <li><b><a href="../Backend/logout.php">Sign Out</a></b></li>
+        <br>
+    </ul>
+    <script type="text/javascript">
+        $('#menuslide li').click(function() {
+            $('ul', this).slideToggle(100);
+        });
+    </script>
 </body>
 
 </html>

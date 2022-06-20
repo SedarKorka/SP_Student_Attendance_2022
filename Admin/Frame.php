@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+
+
+include('Functions/is_login.php');
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +18,7 @@
     <title>Frame</title>
 </head>
 <frameset rows="100,*,0" border="5" bordercolor="#0d6efd">
-    <frame name="Top" scrolling="no" noresize target="content" src="TopPage.html">
+    <frame name="Top" scrolling="no" noresize target="content" src="TopPage.php">
         <frameset cols="150,*,">
             <frame name="saturs" target="info" src="button.html">
                 <frame name="info" src="">

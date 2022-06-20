@@ -1,3 +1,26 @@
+
+
+<?php 
+session_start();
+//die($_SESSION['id']);
+ 
+ 
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/User.php");
+
+
+$profile = User::selectUserById($_SESSION['id']);
+
+ 
+
+ 
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +47,22 @@
     <div class="title">
         <h2>Your Data</h2>
     </div>
-    <form action="/action_page.php">
+
+    <?php foreach ($profile as $p) {
+        
+
+        $time = new DateTime($p->date);
+        $date = $time->format('Y'); 
+
+        $currentDate = 2022;
+
+        $age = date_diff(date_create($currentDate), date_create($date));
+ 
+        
+        
+        ?>
+        
+        <form action="/action_page.php">
 
         <label for="img">
             <br>
@@ -42,17 +80,17 @@
     <form action="action.php">
         <div class="fullname">
             <label for="fName">Full Name: </label>
-            <input type="text" name="fname" id="fName" value="">
+            <input type="text" name="fname" id="fName" value="<?= $p->firstname.' '.$p->lastname ?>">
         </div>
         <br>
         <div class="email">
             <label for="email">Email Adress: </label>
-            <input type="text" name="email" id="email" value="@email.com">
+            <input type="text" name="email" id="email" value="<?= $p->email ?>">
         </div>
         <br>
         <div class="age">
             <label for="Age"> Age: </label>
-            <input type="text" name="Age" id="Age" value="" maxlength="25" size="25">
+            <input type="text" name="Age" id="Age" value="<?= $age->format("%y") ?>" maxlength="25" size="25">
         </div>
         <br>
         <div class="level">
@@ -66,7 +104,7 @@
         <br>
         <div class="address">
             <label for="address">Address: </label>
-            <input type="text" name="address" id="address" value="" maxlength="22" size="22">
+            <input type="text" name="address" id="address" value="<?= $p->address ?>" maxlength="22" size="22">
         </div>
         <br>
         <div class="sub">
@@ -100,6 +138,10 @@
             <button type="button" class="btn btn-outline-primary btn-lg">Submit</button>
         </div>
     </form>
+
+
+    <?php }  ?>
+    
 
 </body>
 

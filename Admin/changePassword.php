@@ -1,3 +1,20 @@
+
+<?php
+
+include_once("../Backend/changepassword.php");
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/User.php");
+
+ 
+
+   
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,15 +37,47 @@
     <script src="Myscript.js"></script>
     <title>Change Password</title>
 </head>
+<style>
+    .message{
+  background: #008000;
+  color:#FFF;
+  padding: 1em .5em;
+  margin: 1em 0;
+}
+</style>
 
 <body>
     <div class="title">
         <h2>Change Password</h2>
     </div>
-    <form action="action.php">
+    <form action="#" method="POST">
+        
+
+    <?php if(count($errors) > 0): ?>
+    <div class="message" align="center">
+        <?php
+          foreach ($errors as $err) { ?>
+              *<?= $err ?><br/>
+         <?php }
+
+
+        ?>
+        </div>
+        <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
         <div class="user">
             <label for="user">User: </label>
-            <select id="user" name="user">
+            <select id="user" name="role">
                 <option value="Professors">Professors</option>
                 <option value="Staff">Staff</option>
                 <option value="Students">Students</option>
@@ -54,8 +103,8 @@
             <input type="password" name="rePass" id="rePass" maxlength="22" size="22">
             <input type="checkbox" onclick="retypePassfunction()">Show Password
         </div>
-        <br>
-            <button type="button" class="btn btn-outline-primary btn-lg"  id="passbtn">Done</button>
+        <br> 
+            <input type="submit" class="btn btn-outline-primary btn-lg" id="passbtn" value="Add" name="addBtn">
     </form>
 </body>
 

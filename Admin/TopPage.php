@@ -1,3 +1,7 @@
+
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,13 +20,13 @@
             </div>
         </div>
         <div class="title">
-            <h1>ADMIN'S DASHBOARD</h1>
+            <h1>STAFF'S DASHBOARD</h1>
         </div>
         <div class="right">
             <div class="profile">
                 <div class="info">
-                    <span class="name">Admin Name</span>
-                    <span class="id">Admin ID</span>
+                    <span class="name"><?php echo $_SESSION['firstname'] ?></span>
+                    <span class="id">Staff ID</span>
                 </div>
                 <img src="profile.png" alt="profile">
             </div>

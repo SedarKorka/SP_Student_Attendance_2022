@@ -44,12 +44,24 @@ if (count($errors) == 0) {
             
             array_push($errors,"Sorry, this user don't exist!");
         }else {
-            $_SESSION['email'] = $email;
-            $_SESSION['firstname'] = $user->firstname;
-            $_SESSION['lassname'] = $user->	lasstname;
-
+            foreach ($user as $u) {
+                $_SESSION['id'] = $u->id;
+                $_SESSION['firstname'] = $u->firstname;
+                $_SESSION['lassname'] = $u->lastname;
+            }
             
-            header("Location: Faculties/Frame.php");
+            $_SESSION['email'] = $email;
+           
+
+            if ($role=="faculty") {
+                header("Location: Faculties/Frame.php");
+            }elseif ($role=="Student") {
+                header("Location: Students/Frame.php");
+            }
+            elseif ($role=="admin") {
+                header("Location: Admin/Frame.html");
+            }
+            
         }
     } catch (\Throwable $th) {
         //throw $th;

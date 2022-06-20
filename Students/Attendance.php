@@ -1,3 +1,25 @@
+<?php 
+session_start();
+//die($_SESSION['id']);
+ 
+
+include_once("../Backend/SelectSchedules.php");
+
+session_start();
+
+include_once("../db/config.php");
+include_once("../classes/Classes.php");
+
+$Shedules = Classes::selectAllShedulesById($_SESSION['id']);
+
+ 
+
+   
+ 
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
