@@ -20,7 +20,7 @@ session_start();
             </div>
         </div>
         <div class="title">
-            <h1>STAFF'S DASHBOARD</h1>
+        <h1>ADMIN'S DASHBOARD</h1>
         </div>
         <div class="right">
             <div class="profile">
